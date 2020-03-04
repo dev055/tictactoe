@@ -14,20 +14,20 @@ class ManageIndiceTest {
     @Test
     fun testIfNumberIsNotNull() {
         val manageIndice = ManageIndice()
-        manageIndice.number = 3
-        Assert.assertEquals(true,manageIndice.number != null)
+        manageIndice.mNumber = 3
+        Assert.assertEquals(true,manageIndice.mNumber != null)
     }
 
     @Test
     fun testIfEndIsNotNull() {
         val manageIndice = ManageIndice()
-        manageIndice.end = 2
-        Assert.assertEquals(true,manageIndice.end != null)
+        manageIndice.mEnd = 2
+        Assert.assertEquals(true,manageIndice.mEnd != null)
     }
 
     @Test
     fun testIfStringBuilderIsNotNull() {
         val manageIndice = ManageIndice()
-        Assert.assertEquals(true,manageIndice.result!= null)
+        Assert.assertEquals(true,manageIndice.mResult!= null)
     }
 }

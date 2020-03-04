@@ -35,19 +35,18 @@ class Game() {
      */
     fun indicesForRows(): String {
         var row = 0
-        var end = mNumberRows!!.minus(1)
-        var stringBuilder = StringBuilder()
-        for(x in 0..end) {
+        val manageIndice = ManageIndice(mNumberRows!!)
+        for(x in 0..manageIndice.mEnd!!) {
             var indexToSave = row
             var start = row
-            for(start in 0..end) {
-                stringBuilder.append("$indexToSave ")
+            for(start in 0..manageIndice.mEnd!!) {
+                manageIndice.mResult.append("$indexToSave ")
                 indexToSave += 1
             }
             row += 3
         }
-        stringBuilder.deleteCharAt(stringBuilder.length.minus(1))
-        return stringBuilder.toString()
+        manageIndice.mResult.deleteCharAt(manageIndice.mResult.length.minus(1))
+        return manageIndice.mResult.toString()
     }
 
     /**
@@ -55,19 +54,18 @@ class Game() {
      */
     fun indicesForColumns(): String {
         var column = 0
-        var end = mNumberColumns!!.minus(1)
-        var stringBuilder = StringBuilder()
-        for(x in 0..end) {
+        val manageIndice = ManageIndice(mNumberRows!!)
+        for(x in 0..manageIndice.mEnd!!) {
             var indexToSave = column
             var start = column
-            for(start in 0..end) {
-                stringBuilder.append("$indexToSave ")
+            for(start in 0..manageIndice.mEnd!!) {
+                manageIndice.mResult.append("$indexToSave ")
                 indexToSave += 3
             }
             column += 1
         }
-        stringBuilder.deleteCharAt(stringBuilder.length.minus(1))
-        return stringBuilder.toString()
+        manageIndice.mResult.deleteCharAt(manageIndice.mResult.length.minus(1))
+        return manageIndice.mResult.toString()
     }
 
     /**
@@ -75,15 +73,14 @@ class Game() {
      */
     fun indicesForFirstDiagonally(): String {
         var diagonally = 0
-        var end = mNumberColumns!!.minus(1)
-        var stringBuilder = StringBuilder()
+        val manageIndice = ManageIndice(mNumberRows!!)
         var indexToSave = diagonally
-        for(x in 0..end) {
-            stringBuilder.append("$indexToSave ")
+        for(x in 0..manageIndice.mEnd!!) {
+            manageIndice.mResult.append("$indexToSave ")
             indexToSave += 4
         }
-        stringBuilder.deleteCharAt(stringBuilder.length.minus(1))
-        return stringBuilder.toString()
+        manageIndice.mResult.deleteCharAt(manageIndice.mResult.length.minus(1))
+        return manageIndice.mResult.toString()
     }
 
     /**
@@ -91,15 +88,14 @@ class Game() {
      */
     fun indicesForSecondDiagonally(): String {
         var diagonally = 2
-        var end = mNumberColumns!!.minus(1)
-        var stringBuilder = StringBuilder()
+        val manageIndice = ManageIndice(mNumberRows!!)
         var indexToSave = diagonally
-        for(x in 0..end) {
-            stringBuilder.append("$indexToSave ")
+        for(x in 0..manageIndice.mEnd!!) {
+            manageIndice.mResult.append("$indexToSave ")
             indexToSave += 2
         }
-        stringBuilder.deleteCharAt(stringBuilder.length.minus(1))
-        return stringBuilder.toString()
+        manageIndice.mResult.deleteCharAt(manageIndice.mResult.length.minus(1))
+        return manageIndice.mResult.toString()
     }
 
 }
