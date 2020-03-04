@@ -4,7 +4,8 @@ class Game() {
     var board: HashMap<Int,String>
     var mNumberRows: Int? = null
     var mNumberColumns: Int? = null
-    var player: Player? = null
+    var playerOne: Player? = null
+    var playerTwo: Player? = null
 
     init {
         board = HashMap()
