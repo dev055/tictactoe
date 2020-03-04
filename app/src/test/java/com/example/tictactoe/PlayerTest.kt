@@ -10,4 +10,11 @@ class PlayerTest {
     fun testIfPlayerIsNotNull() {
         Assert.assertEquals(true, Player() != null)
     }
+
+    @Test
+    fun testIfPlayerHasAName() {
+        val player = Player()
+        player.name = "player one"
+        Assert.assertEquals(true,player.name != null)
+    }
 }
