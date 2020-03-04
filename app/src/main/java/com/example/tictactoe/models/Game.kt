@@ -1,7 +1,9 @@
 package com.example.tictactoe.models
 
 class Game() {
-    lateinit var board: HashMap<Int,String>
+    var board: HashMap<Int,String>
+    var mNumberRows: Int? = null
+
     init {
         board = HashMap()
     }
