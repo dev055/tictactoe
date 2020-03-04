@@ -1,7 +1,8 @@
-package com.example.tictactoe
+package com.example.tictactoe.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.tictactoe.R
 
 class MainActivity : AppCompatActivity() {
 
