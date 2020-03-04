@@ -88,4 +88,16 @@ class GameTest {
         val valuesX = game.mBoard.filterValues { it.type == Type.TYPE_O }
         Assert.assertEquals(true,valuesX.values.toList()[0].type == Type.TYPE_O)
     }
+
+    @Test
+    fun testRetrieveIndicesForX() {
+        val indices = game.mBoard.filterValues { player -> player.type == Type.TYPE_X }.toList()
+        Assert.assertEquals(true,indices.size == 6 )
+    }
+
+    @Test
+    fun testRetrieveIndicesForO() {
+        val indices = game.mBoard.filterValues { player -> player.type == Type.TYPE_O }.toList()
+        Assert.assertEquals(true,indices.size == 3 )
+    }
 }

@@ -15,11 +15,11 @@ class Game() {
         return mBoard.size == 9
     }
 
-    fun getValuesX() {
+    fun getValuesXIndices() {
         mBoard.filterValues { it.type == Type.TYPE_X }
     }
 
-    fun getValuesO() {
+    fun getValuesOIndices() {
         mBoard.filterValues { it.type == Type.TYPE_O }
     }
 }
