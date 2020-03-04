@@ -34,4 +34,12 @@ class GameTest {
     fun testIfGameHasNumberOfColumns() {
         Assert.assertEquals(true,game.mNumberColumns != null)
     }
+
+    @Test
+    fun testIfBoardContainsValues() {
+        game.board[0] = "X"
+        game.board[1] = "O"
+        game.board[2] = "X"
+        Assert.assertEquals(false,game.board.isEmpty())
+    }
 }
