@@ -38,28 +38,28 @@ class GameTest {
 
     @Test
     fun testIfBoardContainsValues() {
-        game.board[0] = Player("player one")
-        game.board[1] = Player("player two")
-        game.board[2] = Player("player one")
+        game.board[0] = Player("player one","X")
+        game.board[1] = Player("player two","O")
+        game.board[2] = Player("player one","X")
         Assert.assertEquals(false,game.board.isEmpty())
     }
 
     @Test
     fun testIfGameContainsAPlayerOne() {
-        game.playerOne = Player("player one")
+        game.playerOne = Player("player one","X")
         Assert.assertEquals(true,game.playerOne != null)
     }
 
     @Test
     fun testIfGameContainsAPlayerTwo() {
-        game.playerTwo = Player("player two")
+        game.playerTwo = Player("player two","X")
         Assert.assertEquals(true,game.playerTwo != null)
     }
 
     @Test
     fun testIfGameContainsPlayers() {
-        game.playerOne = Player("player one")
-        game.playerTwo = Player("player two")
+        game.playerOne = Player("player one","X")
+        game.playerTwo = Player("player two","X")
         val condition = (game.playerOne != null && game.playerTwo != null)
         Assert.assertEquals(true,condition)
     }
