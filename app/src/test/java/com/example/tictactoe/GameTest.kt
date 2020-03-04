@@ -9,12 +9,12 @@ import org.junit.Test
 
 class GameTest {
     private lateinit var game: Game
+    private var indicesForRows = "0 1 2 3 4 5 6 7 8"
+    private var indicesForColumns = "0 3 6 1 4 7 2 5 8"
 
     @Before
     fun instantiateGame() {
-        game = Game()
-        game.mNumberRows = 3
-        game.mNumberColumns = 3
+        game = Game(3,3)
 
         game.mBoard[0] = Player("player one",Type.TYPE_X)
         game.mBoard[1] = Player("player two",Type.TYPE_O)
@@ -99,5 +99,17 @@ class GameTest {
     fun testRetrieveIndicesForO() {
         val indices = game.mBoard.filterValues { player -> player.type == Type.TYPE_O }.toList()
         Assert.assertEquals(true,indices.size == 3 )
+    }
+
+    @Test
+    fun testRetrieveIndicesOfRows() {
+        val indForRows = game.indicesForRows()
+        Assert.assertEquals(true,indForRows == indicesForRows)
+    }
+
+    @Test
+    fun testRetrieveIndicesOfColumns() {
+        val indForColumns = game.indicesForColumns()
+        Assert.assertEquals(true,indForColumns == indicesForColumns)
     }
 }
