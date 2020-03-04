@@ -46,20 +46,20 @@ class GameTest {
 
     @Test
     fun testIfGameContainsAPlayerOne() {
-        game.playerOne = Player()
+        game.playerOne = Player("player one")
         Assert.assertEquals(true,game.playerOne != null)
     }
 
     @Test
     fun testIfGameContainsAPlayerTwo() {
-        game.playerTwo = Player()
+        game.playerTwo = Player("player two")
         Assert.assertEquals(true,game.playerTwo != null)
     }
 
     @Test
     fun testIfGameContainsPlayers() {
-        game.playerOne = Player()
-        game.playerTwo = Player()
+        game.playerOne = Player("player one")
+        game.playerTwo = Player("player two")
         val condition = (game.playerOne != null && game.playerTwo != null)
         Assert.assertEquals(true,condition)
     }

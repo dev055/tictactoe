@@ -1,5 +1,3 @@
 package com.example.tictactoe.models
 
-class Player() {
-    lateinit var name: String
-}
+class Player(var name: String)
