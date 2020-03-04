@@ -12,6 +12,7 @@ class GameTest {
     fun instantiateGame() {
         game = Game()
         game.mNumberRows = 3
+        game.mNumberColumns = 3
     }
 
     @Test
@@ -27,5 +28,10 @@ class GameTest {
     @Test
     fun testIfGameHasNumberOfRows() {
         Assert.assertEquals(true,game.mNumberRows != null)
+    }
+
+    @Test
+    fun testIfGameHasNumberOfColumns() {
+        Assert.assertEquals(true,game.mNumberColumns != null)
     }
 }
