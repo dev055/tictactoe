@@ -76,7 +76,6 @@ class Game() {
     fun indicesForFirstDiagonally(): String {
         var diagonally = 0
         var end = mNumberColumns!!.minus(1)
-        var start = 0
         var stringBuilder = StringBuilder()
         var indexToSave = diagonally
         for(x in 0..end) {
@@ -93,7 +92,6 @@ class Game() {
     fun indicesForSecondDiagonally(): String {
         var diagonally = 2
         var end = mNumberColumns!!.minus(1)
-        var start = 0
         var stringBuilder = StringBuilder()
         var indexToSave = diagonally
         for(x in 0..end) {
@@ -103,4 +101,5 @@ class Game() {
         stringBuilder.deleteCharAt(stringBuilder.length.minus(1))
         return stringBuilder.toString()
     }
+
 }
