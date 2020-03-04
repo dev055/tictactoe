@@ -11,6 +11,8 @@ class GameTest {
     private lateinit var game: Game
     private var indicesForRows = "0 1 2 3 4 5 6 7 8"
     private var indicesForColumns = "0 3 6 1 4 7 2 5 8"
+    private var indicesForFirstDiagonally = "0 4 8"
+    private var indicesForSecondDiagonally = "2 4 6"
 
     @Before
     fun instantiateGame() {
@@ -111,5 +113,17 @@ class GameTest {
     fun testRetrieveIndicesOfColumns() {
         val indForColumns = game.indicesForColumns()
         Assert.assertEquals(true,indForColumns == indicesForColumns)
+    }
+
+    @Test
+    fun testRetrieveIndicesOfFirstDiagonally() {
+        val indForFirstDiag = game.indicesForFirstDiagonally()
+        Assert.assertEquals(true,indForFirstDiag == indicesForFirstDiagonally)
+    }
+
+    @Test
+    fun testRetrieveIndicesOfSecondDiagonally() {
+        val indForSecondDiag = game.indicesForSecondDiagonally()
+        Assert.assertEquals(true,indForSecondDiag == indicesForSecondDiagonally)
     }
 }

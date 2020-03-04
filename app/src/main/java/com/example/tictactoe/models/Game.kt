@@ -33,7 +33,7 @@ class Game() {
     /**
      * Try to retrieve indices for Rows
      */
-    fun indicesForRows(): String{
+    fun indicesForRows(): String {
         var row = 0
         var end = mNumberRows!!.minus(1)
         var stringBuilder = StringBuilder()
@@ -53,9 +53,9 @@ class Game() {
     /**
      * Retrieve indices for columns
      */
-    fun indicesForColumns(): String{
+    fun indicesForColumns(): String {
         var column = 0
-        var end = mNumberRows!!.minus(1)
+        var end = mNumberColumns!!.minus(1)
         var stringBuilder = StringBuilder()
         for(x in 0..end) {
             var indexToSave = column
@@ -65,6 +65,40 @@ class Game() {
                 indexToSave += 3
             }
             column += 1
+        }
+        stringBuilder.deleteCharAt(stringBuilder.length.minus(1))
+        return stringBuilder.toString()
+    }
+
+    /**
+     * indices for diagonally
+     */
+    fun indicesForFirstDiagonally(): String {
+        var diagonally = 0
+        var end = mNumberColumns!!.minus(1)
+        var start = 0
+        var stringBuilder = StringBuilder()
+        var indexToSave = diagonally
+        for(x in 0..end) {
+            stringBuilder.append("$indexToSave ")
+            indexToSave += 4
+        }
+        stringBuilder.deleteCharAt(stringBuilder.length.minus(1))
+        return stringBuilder.toString()
+    }
+
+    /**
+     * indices for reverse diagonally
+     */
+    fun indicesForSecondDiagonally(): String {
+        var diagonally = 2
+        var end = mNumberColumns!!.minus(1)
+        var start = 0
+        var stringBuilder = StringBuilder()
+        var indexToSave = diagonally
+        for(x in 0..end) {
+            stringBuilder.append("$indexToSave ")
+            indexToSave += 2
         }
         stringBuilder.deleteCharAt(stringBuilder.length.minus(1))
         return stringBuilder.toString()
