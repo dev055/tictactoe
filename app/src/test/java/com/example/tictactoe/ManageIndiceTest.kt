@@ -24,4 +24,10 @@ class ManageIndiceTest {
         manageIndice.end = 2
         Assert.assertEquals(true,manageIndice.end != null)
     }
+
+    @Test
+    fun testIfStringBuilderIsNotNull() {
+        val manageIndice = ManageIndice()
+        Assert.assertEquals(true,manageIndice.result!= null)
+    }
 }
