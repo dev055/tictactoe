@@ -16,10 +16,10 @@ class Game() {
     }
 
     fun getValuesX() {
-        mBoard.filterValues { it.type == "X" }
+        mBoard.filterValues { it.type == Type.TYPE_X }
     }
 
     fun getValuesO() {
-        mBoard.filterValues { it.type == "O" }
+        mBoard.filterValues { it.type == Type.TYPE_O }
     }
 }
