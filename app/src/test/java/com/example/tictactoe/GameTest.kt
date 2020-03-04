@@ -1,6 +1,7 @@
 package com.example.tictactoe
 
 import com.example.tictactoe.models.Game
+import com.example.tictactoe.models.Player
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
@@ -41,5 +42,11 @@ class GameTest {
         game.board[1] = "O"
         game.board[2] = "X"
         Assert.assertEquals(false,game.board.isEmpty())
+    }
+
+    @Test
+    fun testIfGameContainsAPlayer() {
+        game.player = Player()
+        Assert.assertEquals(true,game.player != null)
     }
 }
