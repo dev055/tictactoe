@@ -10,4 +10,8 @@ class Game() {
     init {
         board = HashMap()
     }
+
+    fun isFinished(): Boolean {
+        return board.size == 9
+    }
 }

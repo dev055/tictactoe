@@ -14,6 +14,16 @@ class GameTest {
         game = Game()
         game.mNumberRows = 3
         game.mNumberColumns = 3
+
+        game.board[0] = Player("player one","X")
+        game.board[1] = Player("player two","O")
+        game.board[2] = Player("player one","X")
+        game.board[3] = Player("player one","X")
+        game.board[4] = Player("player two","X")
+        game.board[5] = Player("player one","X")
+        game.board[6] = Player("player one","X")
+        game.board[7] = Player("player two","O")
+        game.board[8] = Player("player one","O")
     }
 
     @Test
@@ -38,9 +48,6 @@ class GameTest {
 
     @Test
     fun testIfBoardContainsValues() {
-        game.board[0] = Player("player one","X")
-        game.board[1] = Player("player two","O")
-        game.board[2] = Player("player one","X")
         Assert.assertEquals(false,game.board.isEmpty())
     }
 
@@ -62,5 +69,10 @@ class GameTest {
         game.playerTwo = Player("player two","X")
         val condition = (game.playerOne != null && game.playerTwo != null)
         Assert.assertEquals(true,condition)
+    }
+
+    @Test
+    fun testIfGameIsFinished() {
+        Assert.assertEquals(true,game.board.size == 9)
     }
 }
