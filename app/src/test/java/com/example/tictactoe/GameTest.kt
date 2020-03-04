@@ -15,15 +15,15 @@ class GameTest {
         game.mNumberRows = 3
         game.mNumberColumns = 3
 
-        game.board[0] = Player("player one","X")
-        game.board[1] = Player("player two","O")
-        game.board[2] = Player("player one","X")
-        game.board[3] = Player("player one","X")
-        game.board[4] = Player("player two","X")
-        game.board[5] = Player("player one","X")
-        game.board[6] = Player("player one","X")
-        game.board[7] = Player("player two","O")
-        game.board[8] = Player("player one","O")
+        game.mBoard[0] = Player("player one","X")
+        game.mBoard[1] = Player("player two","O")
+        game.mBoard[2] = Player("player one","X")
+        game.mBoard[3] = Player("player one","X")
+        game.mBoard[4] = Player("player two","X")
+        game.mBoard[5] = Player("player one","X")
+        game.mBoard[6] = Player("player one","X")
+        game.mBoard[7] = Player("player two","O")
+        game.mBoard[8] = Player("player one","O")
     }
 
     @Test
@@ -33,7 +33,7 @@ class GameTest {
 
     @Test
     fun testIfGameHasABoard() {
-        Assert.assertEquals(true,game.board != null)
+        Assert.assertEquals(true,game.mBoard != null)
     }
 
     @Test
@@ -48,31 +48,43 @@ class GameTest {
 
     @Test
     fun testIfBoardContainsValues() {
-        Assert.assertEquals(false,game.board.isEmpty())
+        Assert.assertEquals(false,game.mBoard.isEmpty())
     }
 
     @Test
     fun testIfGameContainsAPlayerOne() {
-        game.playerOne = Player("player one","X")
-        Assert.assertEquals(true,game.playerOne != null)
+        game.mPlayerOne = Player("player one","X")
+        Assert.assertEquals(true,game.mPlayerOne != null)
     }
 
     @Test
     fun testIfGameContainsAPlayerTwo() {
-        game.playerTwo = Player("player two","X")
-        Assert.assertEquals(true,game.playerTwo != null)
+        game.mPlayerTwo = Player("player two","X")
+        Assert.assertEquals(true,game.mPlayerTwo != null)
     }
 
     @Test
     fun testIfGameContainsPlayers() {
-        game.playerOne = Player("player one","X")
-        game.playerTwo = Player("player two","X")
-        val condition = (game.playerOne != null && game.playerTwo != null)
+        game.mPlayerOne = Player("player one","X")
+        game.mPlayerTwo = Player("player two","X")
+        val condition = (game.mPlayerOne != null && game.mPlayerTwo != null)
         Assert.assertEquals(true,condition)
     }
 
     @Test
     fun testIfGameIsFinished() {
-        Assert.assertEquals(true,game.board.size == 9)
+        Assert.assertEquals(true,game.mBoard.size == 9)
+    }
+
+    @Test
+    fun testRetrieveOnlyValuesX() {
+        val valuesX = game.mBoard.filterValues { it.type == "X" }
+        Assert.assertEquals(true,valuesX.values.toList()[0].type == "X")
+    }
+
+    @Test
+    fun testRetrieveOnlyValuesO() {
+        val valuesX = game.mBoard.filterValues { it.type == "O" }
+        Assert.assertEquals(true,valuesX.values.toList()[0].type == "O")
     }
 }
