@@ -38,9 +38,9 @@ class GameTest {
 
     @Test
     fun testIfBoardContainsValues() {
-        game.board[0] = "X"
-        game.board[1] = "O"
-        game.board[2] = "X"
+        game.board[0] = Player("player one")
+        game.board[1] = Player("player two")
+        game.board[2] = Player("player one")
         Assert.assertEquals(false,game.board.isEmpty())
     }
 
