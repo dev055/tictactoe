@@ -9,10 +9,12 @@ import org.junit.Test
 
 class GameTest {
     private lateinit var game: Game
-    private var indicesForRows = "0 1 2 3 4 5 6 7 8"
+    private var indicesForRows = "0 1 2-3 4 5-6 7 8"
     private var indicesForColumns = "0 3 6 1 4 7 2 5 8"
     private var indicesForFirstDiagonally = "0 4 8"
     private var indicesForSecondDiagonally = "2 4 6"
+    private var playerOneIndices = "0 2 3 4 5 6"
+    private var playerTwoIndices = "1 7 8"
 
     @Before
     fun instantiateGame() {
@@ -125,5 +127,10 @@ class GameTest {
     fun testRetrieveIndicesOfSecondDiagonally() {
         val indForSecondDiag = game.indicesForSecondDiagonally()
         Assert.assertEquals(true,indForSecondDiag == indicesForSecondDiagonally)
+    }
+
+    @Test
+    fun testIfPlayerOneWins() {
+        Assert.assertEquals(true,game.areyouwin(Type.TYPE_X))
     }
 }

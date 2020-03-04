@@ -1,5 +1,7 @@
 package com.example.tictactoe.models
 
+import java.lang.StringBuilder
+
 class Game() {
     var mBoard: HashMap<Int,Player>
     var mNumberRows: Int? = null
@@ -26,8 +28,12 @@ class Game() {
     /**
      * Retrieve indices for a specific type
      */
-    fun getIndices(type: Int) {
-        mBoard.filterValues { it.type == Type.TYPE_O }
+    fun getIndices(type: Int): String{
+        val result = mBoard.filterValues { it.type == type }.keys.toList()
+        var str = StringBuilder()
+        result.forEach { k -> str.append("$k ") }
+        str.deleteCharAt(str.length.minus(1))
+        return str.toString()
     }
 
     /**
@@ -43,6 +49,8 @@ class Game() {
                 manageIndice.mResult.append("$indexToSave ")
                 indexToSave += 1
             }
+            manageIndice.mResult.deleteCharAt(manageIndice.mResult.length.minus(1))
+            manageIndice.mResult.append("-")
             row += 3
         }
         manageIndice.mResult.deleteCharAt(manageIndice.mResult.length.minus(1))
@@ -98,4 +106,11 @@ class Game() {
         return manageIndice.mResult.toString()
     }
 
+    fun areyouwin(type: Int): Boolean {
+        val indices = getIndices(type)
+        val rowsIndices = indicesForRows()
+        val splited = rowsIndices.split("-")
+        var condition = indices.contains(splited[0]).or(indices.contains(splited[1])).or(indices.contains(splited[2]))
+        return condition
+    }
 }
