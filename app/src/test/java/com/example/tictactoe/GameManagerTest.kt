@@ -1,5 +1,6 @@
 package com.example.tictactoe
 
+import com.example.tictactoe.listeners.IViewListener
 import com.example.tictactoe.models.Game
 import com.example.tictactoe.models.GameManagerForTesting
 import com.example.tictactoe.models.Player
@@ -37,5 +38,10 @@ class GameManagerTest {
         gameManagerForTesting.mGame!!.mPlayerOne = Player(playerOne,Type.TYPE_X)
         gameManagerForTesting.mGame!!.mPlayerTwo = Player(playerTwo,Type.TYPE_O)
         Assert.assertEquals(true,gameManagerForTesting.mGame!!.mPlayerTwo!!.name == "player 2")
+    }
+
+    @Test
+    fun testIfManagerHasViewListener() {
+        Assert.assertEquals(true, gameManagerForTesting.listeners!= null)
     }
 }
