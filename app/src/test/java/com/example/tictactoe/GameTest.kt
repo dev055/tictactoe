@@ -11,7 +11,7 @@ import java.lang.StringBuilder
 class GameTest {
     private lateinit var game: Game
     private var indicesForRows = "0 1 2-3 4 5-6 7 8"
-    private var indicesForColumns = "0 3 6 1 4 7 2 5 8"
+    private var indicesForColumns = "0 3 6-1 4 7-2 5 8"
     private var indicesForFirstDiagonally = "0 4 8"
     private var indicesForSecondDiagonally = "2 4 6"
     private var playerOneIndices = "0 2 3 4 5 6"
@@ -108,13 +108,13 @@ class GameTest {
 
     @Test
     fun testRetrieveIndicesOfRows() {
-        val indForRows = game.indicesForRows()
+        val indForRows = game.getIndicesForElement(3,1,3)
         Assert.assertEquals(true,indForRows == indicesForRows)
     }
 
     @Test
     fun testRetrieveIndicesOfColumns() {
-        val indForColumns = game.indicesForColumns()
+        val indForColumns = game.getIndicesForElement(1,3,3)
         Assert.assertEquals(true,indForColumns == indicesForColumns)
     }
 
@@ -158,5 +158,44 @@ class GameTest {
         println("$indicesForRows")
         println("${result.toString()}")
         Assert.assertEquals(true,indicesForRows == result.toString())
+    }
+
+    @Test
+    fun testGetIndicesFunctionGenericForColumns() {
+        var element = 0
+        var number = 3
+        var addForElement = 1
+        var addForIndex = 3
+        var end = number.minus(1)
+        var result = StringBuilder()
+        for(x in 0..end) {
+            var indexToSave = element
+            var start = element
+            for(start in 0..end) {
+                result.append("$indexToSave ")
+                indexToSave += addForIndex
+            }
+            result.deleteCharAt(result.length.minus(1))
+            result.append("-")
+            element += addForElement
+        }
+        result.deleteCharAt(result.length.minus(1))
+        Assert.assertEquals(true,indicesForColumns == result.toString())
+    }
+
+    @Test
+    fun testGetIndicesFunctionGenericForFirstDiagonally() {
+        var element = 0
+        var number = 3
+        var addForIndex = 4
+        var end = number.minus(1)
+        var result = StringBuilder()
+        var indexToSave = element
+        for(x in 0..end) {
+            result.append("$indexToSave ")
+            indexToSave += addForIndex
+        }
+        result.deleteCharAt(result.length.minus(1))
+        Assert.assertEquals(true,result.toString() == indicesForFirstDiagonally)
     }
 }
