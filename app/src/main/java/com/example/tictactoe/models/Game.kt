@@ -136,10 +136,11 @@ class Game() {
     }
 
     fun areyouwin(type: Int): Boolean {
-        val indices = getIndices(type)
+        /*val indices = getIndices(type)
         val rowsIndices = indicesForRows()
         val splited = rowsIndices.split("-")
         var condition = indices.contains(splited[0]).or(indices.contains(splited[1])).or(indices.contains(splited[2]))
-        return condition
+        return condition*/
+        return false
     }
 }
