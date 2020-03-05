@@ -90,6 +90,17 @@ class Game() {
         return result.toString()
     }
 
+    fun whoPlays() {
+        if(mCurrent == null) {
+            mCurrent = mPlayerOne
+        } else {
+            if (mCurrent!!.name == mPlayerOne!!.name)
+                mCurrent = mPlayerTwo
+            else
+                mCurrent = mPlayerOne
+        }
+    }
+
     fun areyouwin(type: Int): Boolean {
         val indices = getIndices(type)
         val rowsIndices = getIndicesForElement(3,1,3)
