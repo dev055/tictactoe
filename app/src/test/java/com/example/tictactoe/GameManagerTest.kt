@@ -44,4 +44,24 @@ class GameManagerTest {
     fun testIfManagerHasViewListener() {
         Assert.assertEquals(true, gameManagerForTesting.listeners!= null)
     }
+
+    @Test
+    fun testPlayerTwoHasDefaultName() {
+        val playerOne = PlayerNameUtil.defaultName("adn")
+        val playerTwo = PlayerNameUtil.defaultName("")
+        gameManagerForTesting.mGame!!.mPlayerOne = Player(playerOne,Type.TYPE_X)
+        gameManagerForTesting.mGame!!.mPlayerTwo = Player(playerTwo,Type.TYPE_O)
+        val condition = (gameManagerForTesting.mGame!!.mPlayerTwo!!.name == "player 2" && gameManagerForTesting.mGame!!.mPlayerOne!!.name == "adn")
+        Assert.assertEquals(true,condition)
+    }
+
+    @Test
+    fun testPlayerOneHasDefaultName() {
+        val playerOne = PlayerNameUtil.defaultName("")
+        val playerTwo = PlayerNameUtil.defaultName("ndaa")
+        gameManagerForTesting.mGame!!.mPlayerOne = Player(playerOne,Type.TYPE_X)
+        gameManagerForTesting.mGame!!.mPlayerTwo = Player(playerTwo,Type.TYPE_O)
+        val condition = (gameManagerForTesting.mGame!!.mPlayerTwo!!.name == "ndaa" && gameManagerForTesting.mGame!!.mPlayerOne!!.name == "player 1")
+        Assert.assertEquals(true,condition)
+    }
 }
