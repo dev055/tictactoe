@@ -198,4 +198,11 @@ class GameTest {
         result.deleteCharAt(result.length.minus(1))
         Assert.assertEquals(true,result.toString() == indicesForFirstDiagonally)
     }
+
+    @Test
+    fun testSavePositionForACase() {
+        val player = Player("player one",Type.TYPE_X)
+        game.mBoard[1] = player
+        Assert.assertEquals(true, game.mBoard[1] == player)
+    }
 }
