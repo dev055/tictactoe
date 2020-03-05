@@ -3,7 +3,7 @@ package com.example.tictactoe.models
 import java.lang.StringBuilder
 
 class Game() {
-    var mBoard: HashMap<Int,Player>
+    var mBoard: HashMap<Int,Int>
     var mNumberRows: Int? = null
     var mNumberColumns: Int? = null
     var mTotal: Int? = null
@@ -26,15 +26,15 @@ class Game() {
         return mBoard.size == 9
     }
 
-    fun savePosition(position: Int, player: Player) {
-        mBoard[position] = player
+    fun savePosition(position: Int, type: Int) {
+        mBoard[position] = type
     }
 
     /**
      * Retrieve indices for a specific type
      */
     fun getIndices(type: Int): String{
-        val result = mBoard.filterValues { it.type == type }.keys.toList()
+        val result = mBoard.filterValues { it == type }.keys.toList()
         var str = StringBuilder()
         result.forEach { k -> str.append("$k ") }
         str.deleteCharAt(str.length.minus(1))

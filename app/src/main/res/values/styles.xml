@@ -20,4 +20,10 @@
         <item name="android:gravity">center</item>
     </style>
 
+    <style name="itemTextStyle">
+        <item name="android:textColor">@color/color_black</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">@dimen/dimen_45dp</item>
+    </style>
+
 </resources>

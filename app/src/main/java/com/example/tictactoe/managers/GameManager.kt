@@ -6,6 +6,7 @@ import com.example.tictactoe.models.Player
 import com.example.tictactoe.models.Type
 
 object GameManager {
+    private var number = 3
     private var mGame: Game? = null
     private var mListeners = ArrayList<IViewListener>()
 
@@ -14,7 +15,7 @@ object GameManager {
     fun addListener(listener: IViewListener) { mListeners.add(listener) }
 
     fun createPlayer(playerOneName: String, playerTwoName: String) {
-        mGame = Game()
+        mGame = Game(number, number)
         mGame!!.mPlayerOne = Player(playerOneName,Type.TYPE_X)
         mGame!!.mPlayerTwo = Player(playerTwoName,Type.TYPE_O)
         mListeners.forEach { listener -> listener.goNextView() }
