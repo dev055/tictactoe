@@ -155,8 +155,6 @@ class GameTest {
             element += addForElement
         }
         result.deleteCharAt(result.length.minus(1))
-        println("$indicesForRows")
-        println("${result.toString()}")
         Assert.assertEquals(true,indicesForRows == result.toString())
     }
 
