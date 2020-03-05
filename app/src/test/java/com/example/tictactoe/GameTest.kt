@@ -203,4 +203,9 @@ class GameTest {
         game.savePosition(1,player)
         Assert.assertEquals(true, game.mBoard[1] == player)
     }
+
+    @Test
+    fun testSaveCurrentPlayer() {
+
+    }
 }
