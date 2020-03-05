@@ -223,4 +223,12 @@ class GameTest {
             game.mCurrent =  Player("player one",Type.TYPE_X)
         Assert.assertEquals(true,game.mCurrent!!.name == Player("player two",Type.TYPE_O).name)
     }
+
+    @Test
+    fun testPlayerOnePlaysIfNoCurrent() {
+        val player =  Player("player one",Type.TYPE_X)
+        if(game.mCurrent == null)
+            game.mCurrent =  Player("player one",Type.TYPE_X)
+        Assert.assertEquals(true,game.mCurrent!!.name == Player("player one",Type.TYPE_X).name)
+    }
 }
