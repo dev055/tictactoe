@@ -30,6 +30,8 @@ class GameTest {
         game.mBoard[6] = Player("player one",Type.TYPE_X)
         game.mBoard[7] = Player("player two",Type.TYPE_O)
         game.mBoard[8] = Player("player one",Type.TYPE_O)
+
+        game.mCurrent = Player("player one",Type.TYPE_X)
     }
 
     @Test
@@ -210,5 +212,15 @@ class GameTest {
         game.mPlayerOne = player
         game.mCurrent = player
         Assert.assertEquals(true,game.mCurrent == game.mPlayerOne)
+    }
+
+    @Test
+    fun testWhoPlaysIfPreviousIsPlayerOne() {
+        val player =  Player("player one",Type.TYPE_X)
+        if(game.mCurrent!!.name == player.name)
+            game.mCurrent =  Player("player two",Type.TYPE_O)
+        else
+            game.mCurrent =  Player("player one",Type.TYPE_X)
+        Assert.assertEquals(true,game.mCurrent!!.name == Player("player two",Type.TYPE_O).name)
     }
 }
