@@ -9,6 +9,8 @@ object PlayerNameUtil {
         if(name.isEmpty()) {
             result = "$default $playerCounter"
         }
+        playerCounter++
+        if(playerCounter == 2) playerCounter = 1
         return result
     }
 }
