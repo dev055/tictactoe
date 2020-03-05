@@ -1,6 +1,5 @@
 package com.example.tictactoe
 
-import com.example.tictactoe.listeners.IViewListener
 import com.example.tictactoe.models.Game
 import com.example.tictactoe.models.GameManagerForTesting
 import com.example.tictactoe.models.Player
