@@ -21,15 +21,15 @@ class GameTest {
     fun instantiateGame() {
         game = Game(3,3)
 
-        game.mBoard[0] = Player("player one",Type.TYPE_X)
-        game.mBoard[1] = Player("player two",Type.TYPE_O)
-        game.mBoard[2] = Player("player one",Type.TYPE_X)
-        game.mBoard[3] = Player("player one",Type.TYPE_X)
-        game.mBoard[4] = Player("player two",Type.TYPE_X)
-        game.mBoard[5] = Player("player one",Type.TYPE_X)
-        game.mBoard[6] = Player("player one",Type.TYPE_X)
-        game.mBoard[7] = Player("player two",Type.TYPE_O)
-        game.mBoard[8] = Player("player one",Type.TYPE_O)
+        game.mBoard[0] = Type.TYPE_X
+        game.mBoard[1] = Type.TYPE_O
+        game.mBoard[2] = Type.TYPE_X
+        game.mBoard[3] = Type.TYPE_X
+        game.mBoard[4] = Type.TYPE_X
+        game.mBoard[5] = Type.TYPE_X
+        game.mBoard[6] = Type.TYPE_X
+        game.mBoard[7] = Type.TYPE_O
+        game.mBoard[8] = Type.TYPE_O
 
         game.mCurrent = Player("player one",Type.TYPE_X)
     }
@@ -86,25 +86,25 @@ class GameTest {
 
     @Test
     fun testRetrieveOnlyValuesX() {
-        val valuesX = game.mBoard.filterValues { it.type == Type.TYPE_X }
-        Assert.assertEquals(true,valuesX.values.toList()[0].type == Type.TYPE_X)
+        val valuesX = game.mBoard.filterValues { it == Type.TYPE_X }
+        Assert.assertEquals(true,valuesX.values.toList()[0] == Type.TYPE_X)
     }
 
     @Test
     fun testRetrieveOnlyValuesO() {
-        val valuesX = game.mBoard.filterValues { it.type == Type.TYPE_O }
-        Assert.assertEquals(true,valuesX.values.toList()[0].type == Type.TYPE_O)
+        val valuesX = game.mBoard.filterValues { it == Type.TYPE_O }
+        Assert.assertEquals(true,valuesX.values.toList()[0] == Type.TYPE_O)
     }
 
     @Test
     fun testRetrieveIndicesForX() {
-        val indices = game.mBoard.filterValues { player -> player.type == Type.TYPE_X }.toList()
+        val indices = game.mBoard.filterValues { type -> type == Type.TYPE_X }.toList()
         Assert.assertEquals(true,indices.size == 6 )
     }
 
     @Test
     fun testRetrieveIndicesForO() {
-        val indices = game.mBoard.filterValues { player -> player.type == Type.TYPE_O }.toList()
+        val indices = game.mBoard.filterValues { type -> type == Type.TYPE_O }.toList()
         Assert.assertEquals(true,indices.size == 3 )
     }
 
@@ -202,8 +202,8 @@ class GameTest {
     @Test
     fun testSavePositionForACase() {
         val player = Player("player one",Type.TYPE_X)
-        game.savePosition(1,player)
-        Assert.assertEquals(true, game.mBoard[1] == player)
+        game.savePosition(1,Type.TYPE_X)
+        Assert.assertEquals(true, game.mBoard[1] == player.type)
     }
 
     @Test
