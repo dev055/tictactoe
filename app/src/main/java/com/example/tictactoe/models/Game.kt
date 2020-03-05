@@ -39,7 +39,7 @@ class Game() {
     /**
      * Try to retrieve indices for Rows
      */
-    fun indicesForRows(): String {
+    /*fun indicesForRows(): String {
         var row = 0
         val manageIndice = ManageIndice(mNumberRows!!)
         for(x in 0..manageIndice.mEnd!!) {
@@ -74,6 +74,35 @@ class Game() {
         }
         manageIndice.mResult.deleteCharAt(manageIndice.mResult.length.minus(1))
         return manageIndice.mResult.toString()
+    }
+    */
+
+    /**
+     * Retrieve indices for Rows or Columns
+     * Rows : 3,1,3
+     * Columns: 1,3,3
+     * @param addForElement value to add to next element
+     * @param addForIndex value to add to index
+     * @param number number of elements
+     * @return String
+     */
+    fun getIndicesForElement(addForElement: Int, addForIndex: Int, number: Int): String{
+        var element = 0
+        var end = number.minus(1)
+        var result = StringBuilder()
+        for(x in 0..end) {
+            var indexToSave = element
+            var start = element
+            for(start in 0..end) {
+                result.append("$indexToSave ")
+                indexToSave += addForIndex
+            }
+            result.deleteCharAt(result.length.minus(1))
+            result.append("-")
+            element += addForElement
+        }
+        result.deleteCharAt(result.length.minus(1))
+        return result.toString()
     }
 
     /**
