@@ -26,8 +26,10 @@ class Game() {
         return mBoard.size == 9
     }
 
-    fun savePosition(position: Int, type: Int) {
+    fun savePosition(position: Int, type: Int): Boolean {
+        if(mBoard[position] != null) return false
         mBoard[position] = type
+        return true
     }
 
     /**
