@@ -9,6 +9,7 @@ class Game() {
     var mTotal: Int? = null
     var mPlayerOne: Player? = null
     var mPlayerTwo: Player? = null
+    var mCurrent: Player? = null
 
     init {
         mBoard = HashMap()
