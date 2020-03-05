@@ -10,7 +10,7 @@ object PlayerNameUtil {
             result = "$default $playerCounter"
         }
         playerCounter++
-        if(playerCounter == 2) playerCounter = 1
+        if(playerCounter == 3) playerCounter = 1
         return result
     }
 }
