@@ -37,47 +37,6 @@ class Game() {
     }
 
     /**
-     * Try to retrieve indices for Rows
-     */
-    /*fun indicesForRows(): String {
-        var row = 0
-        val manageIndice = ManageIndice(mNumberRows!!)
-        for(x in 0..manageIndice.mEnd!!) {
-            var indexToSave = row
-            var start = row
-            for(start in 0..manageIndice.mEnd!!) {
-                manageIndice.mResult.append("$indexToSave ")
-                indexToSave += 1
-            }
-            manageIndice.mResult.deleteCharAt(manageIndice.mResult.length.minus(1))
-            manageIndice.mResult.append("-")
-            row += 3
-        }
-        manageIndice.mResult.deleteCharAt(manageIndice.mResult.length.minus(1))
-        return manageIndice.mResult.toString()
-    }
-
-    /**
-     * Retrieve indices for columns
-     */
-    fun indicesForColumns(): String {
-        var column = 0
-        val manageIndice = ManageIndice(mNumberRows!!)
-        for(x in 0..manageIndice.mEnd!!) {
-            var indexToSave = column
-            var start = column
-            for(start in 0..manageIndice.mEnd!!) {
-                manageIndice.mResult.append("$indexToSave ")
-                indexToSave += 3
-            }
-            column += 1
-        }
-        manageIndice.mResult.deleteCharAt(manageIndice.mResult.length.minus(1))
-        return manageIndice.mResult.toString()
-    }
-    */
-
-    /**
      * Retrieve indices for Rows or Columns
      * Rows : 3,1,3
      * Columns: 1,3,3
@@ -106,41 +65,32 @@ class Game() {
     }
 
     /**
-     * indices for diagonally
+     * Retrieve indices for diagonally
+     * first: 0,4,3
+     * second: 2,2,3
+     * @param element
+     * @param addForIndex
+     * @param number
+     * @return String
      */
-    fun indicesForFirstDiagonally(): String {
-        var diagonally = 0
-        val manageIndice = ManageIndice(mNumberRows!!)
-        var indexToSave = diagonally
-        for(x in 0..manageIndice.mEnd!!) {
-            manageIndice.mResult.append("$indexToSave ")
-            indexToSave += 4
+    fun getIndicesForDiagonally(element: Int, addForIndex: Int, number: Int): String {
+        var end = number.minus(1)
+        var result = StringBuilder()
+        var indexToSave = element
+        for(x in 0..end) {
+            result.append("$indexToSave ")
+            indexToSave += addForIndex
         }
-        manageIndice.mResult.deleteCharAt(manageIndice.mResult.length.minus(1))
-        return manageIndice.mResult.toString()
-    }
-
-    /**
-     * indices for reverse diagonally
-     */
-    fun indicesForSecondDiagonally(): String {
-        var diagonally = 2
-        val manageIndice = ManageIndice(mNumberRows!!)
-        var indexToSave = diagonally
-        for(x in 0..manageIndice.mEnd!!) {
-            manageIndice.mResult.append("$indexToSave ")
-            indexToSave += 2
-        }
-        manageIndice.mResult.deleteCharAt(manageIndice.mResult.length.minus(1))
-        return manageIndice.mResult.toString()
+        result.deleteCharAt(result.length.minus(1))
+        return result.toString()
     }
 
     fun areyouwin(type: Int): Boolean {
-        /*val indices = getIndices(type)
-        val rowsIndices = indicesForRows()
+        val indices = getIndices(type)
+        val rowsIndices = getIndicesForElement(3,1,3)
         val splited = rowsIndices.split("-")
         var condition = indices.contains(splited[0]).or(indices.contains(splited[1])).or(indices.contains(splited[2]))
-        return condition*/
+        return condition
         return false
     }
 }
