@@ -6,6 +6,7 @@ import com.example.tictactoe.models.Type
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
+import java.lang.StringBuilder
 
 class GameTest {
     private lateinit var game: Game
@@ -132,5 +133,30 @@ class GameTest {
     @Test
     fun testIfPlayerOneWins() {
         Assert.assertEquals(true,game.areyouwin(Type.TYPE_X))
+    }
+
+    @Test
+    fun testGetIndicesFunctionGenericForRows() {
+        var element = 0
+        var number = 3
+        var addForElement = 3
+        var addForIndex = 1
+        var end = number.minus(1)
+         var result = StringBuilder()
+        for(x in 0..end) {
+            var indexToSave = element
+            var start = element
+            for(start in 0..end) {
+                result.append("$indexToSave ")
+                indexToSave += addForIndex
+            }
+            result.deleteCharAt(result.length.minus(1))
+            result.append("-")
+            element += addForElement
+        }
+        result.deleteCharAt(result.length.minus(1))
+        println("$indicesForRows")
+        println("${result.toString()}")
+        Assert.assertEquals(true,indicesForRows == result.toString())
     }
 }
