@@ -25,6 +25,10 @@ class Game() {
         return mBoard.size == 9
     }
 
+    fun savePosition(position: Int, player: Player) {
+        mBoard[position] = player
+    }
+
     /**
      * Retrieve indices for a specific type
      */
