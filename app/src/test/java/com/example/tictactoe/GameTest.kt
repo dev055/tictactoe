@@ -206,6 +206,9 @@ class GameTest {
 
     @Test
     fun testSaveCurrentPlayer() {
-
+        val player = Player("player one",Type.TYPE_X)
+        game.mPlayerOne = player
+        game.mCurrent = player
+        Assert.assertEquals(true,game.mCurrent == game.mPlayerOne)
     }
 }
