@@ -120,13 +120,13 @@ class GameTest {
 
     @Test
     fun testRetrieveIndicesOfFirstDiagonally() {
-        val indForFirstDiag = game.indicesForFirstDiagonally()
+        val indForFirstDiag = game.getIndicesForDiagonally(0,4,3)
         Assert.assertEquals(true,indForFirstDiag == indicesForFirstDiagonally)
     }
 
     @Test
     fun testRetrieveIndicesOfSecondDiagonally() {
-        val indForSecondDiag = game.indicesForSecondDiagonally()
+        val indForSecondDiag = game.getIndicesForDiagonally(2,2,3)
         Assert.assertEquals(true,indForSecondDiag == indicesForSecondDiagonally)
     }
 
