@@ -16,4 +16,23 @@ class PlayerNameTest {
         }
         Assert.assertEquals(true,defaultName == "player 1")
     }
+
+    @Test
+    fun testCreateDefaultNameForPlayerTwo() {
+        val emptyName = ""
+        var defaultNameOne = "$firstPart $playerCounter"
+        playerCounter++
+        var defaultNameTwo = "$firstPart $playerCounter"
+        Assert.assertEquals(true,defaultNameTwo == "player 2")
+    }
+
+    @Test
+    fun testAfterCreatingDefaultNamesCounterisOne() {
+        val emptyName = ""
+        var defaultNameOne = "$firstPart $playerCounter"
+        playerCounter++
+        var defaultNameTwo = "$firstPart $playerCounter"
+        playerCounter = 1
+        Assert.assertEquals(true,playerCounter == 1)
+    }
 }
