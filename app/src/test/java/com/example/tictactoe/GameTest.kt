@@ -231,4 +231,11 @@ class GameTest {
             game.mCurrent =  Player("player one",Type.TYPE_X)
         Assert.assertEquals(true,game.mCurrent!!.name == Player("player one",Type.TYPE_X).name)
     }
+
+    @Test
+    fun testSavePositionForACaseIfIsEmpty() {
+        val player = Player("player one",Type.TYPE_O)
+        if(game.mBoard[2] == null) game.savePosition(0,player.type)
+        Assert.assertEquals(true, game.mBoard[2] == Type.TYPE_X)
+    }
 }
