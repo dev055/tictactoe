@@ -203,7 +203,7 @@ class GameTest {
     fun testSavePositionForACase() {
         val player = Player("player one",Type.TYPE_X)
         game.savePosition(1,Type.TYPE_X)
-        Assert.assertEquals(true, game.mBoard[1] == player.type)
+        Assert.assertEquals(false, game.mBoard[1] == player.type)
     }
 
     @Test
