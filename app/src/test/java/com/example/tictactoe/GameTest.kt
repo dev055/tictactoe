@@ -354,4 +354,21 @@ class GameTest {
         val conditions = (game.whoWins() == null && game.isBoardFilled())
         Assert.assertEquals(true,conditions)
     }
+
+    @Test
+    fun testResetGame() {
+        game.mBoard.clear()
+        game.mPlayerOne = null
+        game.mPlayerTwo = null
+        game.mNumberColumns = null
+        game.mNumberRows = null
+        game.mTotal = null
+        val conditions = (game.mBoard.isEmpty()
+                && game.mPlayerOne == null
+                && game.mPlayerTwo == null
+                && game.mNumberColumns == null
+                && game.mNumberRows == null
+                && game.mTotal == null)
+        Assert.assertEquals(true,conditions)
+    }
 }
