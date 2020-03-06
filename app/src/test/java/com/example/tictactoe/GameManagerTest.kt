@@ -63,4 +63,9 @@ class GameManagerTest {
         val condition = (gameManagerForTesting.mGame!!.mPlayerTwo!!.name == "ndaa" && gameManagerForTesting.mGame!!.mPlayerOne!!.name == "player 1")
         Assert.assertEquals(true,condition)
     }
+
+    @Test
+    fun testIfManagerHasDialogListener() {
+        Assert.assertEquals(true, gameManagerForTesting.dialogListeners != null)
+    }
 }

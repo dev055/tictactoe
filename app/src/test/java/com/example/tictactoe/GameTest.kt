@@ -137,7 +137,7 @@ class GameTest {
     fun testIfPlayerOneWins() {
         game.mPlayerOne = Player("player one",Type.TYPE_X)
         game.mPlayerTwo = Player("player two",Type.TYPE_O)
-        Assert.assertEquals(true,game.whoWins() == null)
+        Assert.assertEquals(true,game.whoWins() != null)
     }
 
     @Test
@@ -336,5 +336,22 @@ class GameTest {
         if(!wins) wins = game.verifyDiagonally(playerTwoIndices,possibilitySecondDiag)
         println("$wins")
         Assert.assertEquals(false,wins)
+    }
+
+    @Test
+    fun testNineFilledGameIsDraw() {
+        game.mPlayerTwo = Player("player two",Type.TYPE_O)
+        game.mPlayerOne = Player("player one",Type.TYPE_X)
+        game.mBoard[0] = Type.TYPE_X
+        game.mBoard[1] = Type.TYPE_O
+        game.mBoard[2] = Type.TYPE_X
+        game.mBoard[3] = Type.TYPE_X
+        game.mBoard[4] = Type.TYPE_O
+        game.mBoard[5] = Type.TYPE_X
+        game.mBoard[6] = Type.TYPE_O
+        game.mBoard[7] = Type.TYPE_X
+        game.mBoard[8] = Type.TYPE_O
+        val conditions = (game.whoWins() == null && game.isBoardFilled())
+        Assert.assertEquals(true,conditions)
     }
 }
