@@ -27,7 +27,7 @@ class Game() {
     }
 
     fun atLeast5FilledCases(): Boolean {
-        mBoard.size >= 5
+        return mBoard.size >= 5
     }
 
     fun savePosition(position: Int, type: Int): Boolean {
