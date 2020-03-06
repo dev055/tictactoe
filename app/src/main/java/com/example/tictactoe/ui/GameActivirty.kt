@@ -82,8 +82,8 @@ class GameActivirty: AppCompatActivity() {
                 if(game.savePosition(position, case.type!!)) {
                     adapter.notifyItemChanged(position)
                     nextPlayer(game)
-                    if(game.atLeast5FilledCases()) {
-
+                    if(game.whoWins() != null) {
+                        Toast.makeText(this@GameActivirty,getString(R.string.game_won),Toast.LENGTH_SHORT).show()
                     }
                 } else {
                     Toast.makeText(this@GameActivirty,getString(R.string.game_case_filled),Toast.LENGTH_SHORT).show()

@@ -108,26 +108,15 @@ class Game() {
         }
     }
 
-    /*fun areyouwin(type: Int): Boolean {
-        val indices = getIndices(type)
-        val rowsIndices = getIndicesForElement(3,1,3)
-        val splited = rowsIndices.split("-")
-        var condition = indices.contains(splited[0]).or(indices.contains(splited[1])).or(indices.contains(splited[2]))
-        return condition
-        return false
-    }
-    */
-
-    fun verifyElement(indices: String, possibilities: String, reg: String = " "): Boolean{
+    fun verifyElement(indices: String, possibilities: String, reg: String = "-"): Boolean{
         val split = possibilities.split(reg)
         return (indices.containsPossibilities(split[0])
                 || indices.containsPossibilities(split[1])
                 || indices.containsPossibilities(split[2]) )
     }
 
-    fun verifyDiagonally(indices: String, possibilities: String, reg: String = " "): Boolean{
-        val split = possibilities.split(reg)
-        return indices.containsPossibilities(split[0])
+    fun verifyDiagonally(indices: String, possibilities: String): Boolean{
+        return indices.containsPossibilities(possibilities)
     }
 
     fun applyRules(indices: String, rows: String, columns: String, firstDiagonally: String, secondDiagonally: String): Boolean {
