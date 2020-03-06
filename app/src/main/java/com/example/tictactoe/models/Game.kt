@@ -150,4 +150,13 @@ class Game() {
         }
         return null
     }
+
+    fun resetGame() {
+        mBoard.clear()
+        mPlayerOne = null
+        mPlayerTwo = null
+        mNumberColumns = null
+        mNumberRows = null
+        mTotal = null
+    }
 }
