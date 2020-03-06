@@ -255,10 +255,12 @@ class GameTest {
     }
 
     @Test
-    fun testWhoWins() {
+    fun testWhoWinsWithPlayerOneCheckJustRows() {
+        var  playerOneWins = false
         if(game.atLeast5FilledCases()) {
-            var playeronewins = game.getIndicesForElement(3,1,3)
-            if(!playeronewins) playeronewins = game.getIndicesForElement(3,1,3)
+            var playerOneIndices = game.getIndices(game.mPlayerOne!!.type)
+            playerOneWins = playerOneIndices.contains(game.getIndicesForElement(3,1,3))
         }
+        Assert.assertEquals(true,playerOneWins)
     }
 }
