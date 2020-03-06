@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tictactoe.R
 import com.example.tictactoe.models.Case
@@ -17,6 +18,7 @@ class GameAdapter(private val context: Context): RecyclerView.Adapter<RecyclerVi
 
     fun setFunction(fn: ((Case,Int) -> Unit)) { this.fn = fn }
     fun setItems(cases: ArrayList<Case>) {
+        this.mItems.clear()
         this.mItems = cases
         notifyDataSetChanged()
     }
@@ -33,15 +35,29 @@ class GameAdapter(private val context: Context): RecyclerView.Adapter<RecyclerVi
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         holder as GameViewHolder
         val case = mItems[position]
-        case.type?.let { setType(holder.caseView,it) }
+        if(case.type != null) {
+            setType(holder.caseView,case.type!!)
+        } else {
+            holder.caseView.text = ""
+            holder.caseView.setTextColor(ContextCompat.getColor(context,R.color.color_black))
+        }
         holder.mainView.setOnClickListener { fn!!.invoke(case,position) }
     }
 
     private fun setType(view: TextView, type: Int) {
         when(type) {
-            Type.TYPE_X -> { view.text = " X " }
-            Type.TYPE_O -> { view.text = " O " }
-            else -> {}
+            Type.TYPE_X -> {
+                view.text = " X "
+                view.setTextColor(ContextCompat.getColor(context,R.color.color_red_one))
+            }
+            Type.TYPE_O -> {
+                view.text = " O "
+                view.setTextColor(ContextCompat.getColor(context,R.color.color_black))
+            }
+            else -> {
+                view.text = ""
+                view.setTextColor(ContextCompat.getColor(context,R.color.color_black))
+            }
         }
     }
 

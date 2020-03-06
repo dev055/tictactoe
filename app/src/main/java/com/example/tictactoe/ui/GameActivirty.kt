@@ -3,17 +3,42 @@ package com.example.tictactoe.ui
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
+import android.view.LayoutInflater
+import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.tictactoe.R
+import com.example.tictactoe.listeners.IDialogListener
 import com.example.tictactoe.managers.GameManager
 import com.example.tictactoe.models.Case
 import com.example.tictactoe.models.Game
 import com.example.tictactoe.ui.adapters.GameAdapter
 import kotlinx.android.synthetic.main.activity_game.*
 
-class GameActivirty: AppCompatActivity() {
+class GameActivirty: AppCompatActivity(),IDialogListener {
+    override fun show() {
+        val customLayout = LayoutInflater.from(this).inflate(R.layout.dialog_layout,null,false)
+        val alertDialog = AlertDialog.Builder(this)
+            .setTitle(getString(R.string.dialog_title))
+            .setView(customLayout)
+            .create()
+        customLayout.apply {
+            findViewById<TextView>(R.id.dialog_layout_replay_id).setOnClickListener {
+                replay()
+                alertDialog.dismiss()
+            }
+            findViewById<TextView>(R.id.dialog_layout_new_game_id).setOnClickListener {
+                GameManager.getGame()?.resetGame()
+                finish()
+                alertDialog.dismiss()
+            }
+        }
+        alertDialog.show()
+    }
+
     companion object {
         fun newIntent(context: Context): Intent = Intent(context,GameActivirty::class.java)
     }
@@ -22,6 +47,7 @@ class GameActivirty: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
+        GameManager.addDialogListener(this)
         manageView()
         initializeRecyclerview()
     }
@@ -45,15 +71,23 @@ class GameActivirty: AppCompatActivity() {
                     getGame()?.let { game ->
                         game.mCurrent?.let { c ->
                             if (c.name == game.mPlayerOne!!.name) {
-                                playerone.setBackgroundResource(R.color.color_grey_two)
+                                playerone.setBackgroundResource(R.color.color_red_one)
                             } else {
-                                playertwo.setBackgroundResource(R.color.color_grey_two)
+                                playertwo.setBackgroundResource(R.color.color_black)
                             }
                         }
                     }
                 }
             }
         }
+    }
+
+    private fun createDefaultCases(game: Game): ArrayList<Case>{
+        var cases = ArrayList<Case>()
+        for(x in 0..game.mTotal!!.minus(1)) {
+            cases.add(Case())
+        }
+        return cases
     }
 
     private fun initializeRecyclerview() {
@@ -64,11 +98,7 @@ class GameActivirty: AppCompatActivity() {
                     recycler.layoutManager = GridLayoutManager(this@GameActivirty,game.mNumberColumns!!)
                     recycler.adapter = adapter
 
-                    var cases = ArrayList<Case>()
-                    for(x in 0..game.mTotal!!.minus(1)) {
-                        cases.add(Case())
-                    }
-                    adapter.setItems(cases)
+                    adapter.setItems(createDefaultCases(game))
                     adapter.setFunction { case, i -> clickEventOnBoard(case,i) }
                 }
             }
@@ -82,8 +112,13 @@ class GameActivirty: AppCompatActivity() {
                 if(game.savePosition(position, case.type!!)) {
                     adapter.notifyItemChanged(position)
                     nextPlayer(game)
-                    if(game.whoWins() != null) {
-                        Toast.makeText(this@GameActivirty,getString(R.string.game_won),Toast.LENGTH_SHORT).show()
+                    val player = game.whoWins()
+                    if(player != null) {
+                        Toast.makeText(this@GameActivirty,getString(R.string.game_won,player!!.name),Toast.LENGTH_SHORT).show()
+                        endOfGame()
+                    } else if(game.isBoardFilled()) {
+                        Toast.makeText(this@GameActivirty,getString(R.string.game_is_draw),Toast.LENGTH_SHORT).show()
+                        endOfGame()
                     }
                 } else {
                     Toast.makeText(this@GameActivirty,getString(R.string.game_case_filled),Toast.LENGTH_SHORT).show()
@@ -93,8 +128,16 @@ class GameActivirty: AppCompatActivity() {
     }
 
     private fun nextPlayer(game: Game) {
-        //TODO check property finish
         game.whoPlays()
         setCurrentPlayerNameColor()
+    }
+
+    private fun replay() {
+        GameManager.getGame()?.let { game ->
+            adapter.setItems(createDefaultCases(game))
+            game.mBoard.clear()
+            game.mCurrent = null
+            nextPlayer(game)
+        }
     }
 }

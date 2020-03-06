@@ -26,4 +26,10 @@
         <item name="android:textSize">@dimen/dimen_45dp</item>
     </style>
 
+    <style name="dialogTextStyle">
+        <item name="android:textColor">@color/color_blue_one</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">@dimen/dimen_15dp</item>
+    </style>
+
 </resources>
