@@ -253,4 +253,12 @@ class GameTest {
     fun testWhenWeCanApplyRulesV2() {
         Assert.assertEquals(true,game.mBoard.size >= 5)
     }
+
+    @Test
+    fun testWhoWins() {
+        if(game.atLeast5FilledCases()) {
+            var playeronewins = game.getIndicesForElement(3,1,3)
+            if(!playeronewins) playeronewins = game.getIndicesForElement(3,1,3)
+        }
+    }
 }
