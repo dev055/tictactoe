@@ -238,4 +238,19 @@ class GameTest {
         if(game.mBoard[2] == null) game.savePosition(0,player.type)
         Assert.assertEquals(true, game.mBoard[2] == Type.TYPE_X)
     }
+
+    @Test
+    fun testWhenWeCanApplyRules() {
+        var board = HashMap<Int,Int>()
+        board[0] = Type.TYPE_X
+        board[1] = Type.TYPE_O
+        board[2] = Type.TYPE_X
+        board[3] = Type.TYPE_X
+        Assert.assertEquals(false,board.size >= 5)
+    }
+
+    @Test
+    fun testWhenWeCanApplyRulesV2() {
+        Assert.assertEquals(true,game.mBoard.size >= 5)
+    }
 }
