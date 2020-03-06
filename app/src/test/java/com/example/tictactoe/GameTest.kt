@@ -137,7 +137,7 @@ class GameTest {
     fun testIfPlayerOneWins() {
         game.mPlayerOne = Player("player one",Type.TYPE_X)
         game.mPlayerTwo = Player("player two",Type.TYPE_O)
-        Assert.assertEquals(true,game.whoWins()!!.name == "player one")
+        Assert.assertEquals(true,game.whoWins() == null)
     }
 
     @Test
@@ -328,9 +328,13 @@ class GameTest {
         println("$possibilityFirstDiag")
         println("$possibilitySecondDiag")
         wins = game.verifyElement(playerTwoIndices,possibilityRows)
+        println("$wins")
         if(!wins) wins = game.verifyElement(playerTwoIndices,possibilityColumns)
+        println("$wins")
         if(!wins) wins = game.verifyDiagonally(playerTwoIndices,possibilityFirstDiag)
+        println("$wins")
         if(!wins) wins = game.verifyDiagonally(playerTwoIndices,possibilitySecondDiag)
-        Assert.assertEquals(true,wins)
+        println("$wins")
+        Assert.assertEquals(false,wins)
     }
 }
