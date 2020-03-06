@@ -3,12 +3,13 @@ package com.example.tictactoe.ui
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.tictactoe.R
 import com.example.tictactoe.managers.GameManager
 import com.example.tictactoe.models.Case
-import com.example.tictactoe.models.Player
+import com.example.tictactoe.models.Game
 import com.example.tictactoe.ui.adapters.GameAdapter
 import kotlinx.android.synthetic.main.activity_game.*
 
@@ -30,7 +31,27 @@ class GameActivirty: AppCompatActivity() {
             getGame()?.let { game ->
                 game_player_one_id?.text = game.mPlayerOne!!.name
                 game_player_two_id?.text = game.mPlayerTwo!!.name
-                game.whoPlays()
+                nextPlayer(game)
+            }
+        }
+    }
+
+    private fun setCurrentPlayerNameColor() {
+        game_player_one_id?.let { playerone ->
+            game_player_two_id?.let { playertwo ->
+                playerone.setBackgroundResource(R.color.color_grey_one)
+                playertwo.setBackgroundResource(R.color.color_grey_one)
+                GameManager.run {
+                    getGame()?.let { game ->
+                        game.mCurrent?.let { c ->
+                            if (c.name == game.mPlayerOne!!.name) {
+                                playerone.setBackgroundResource(R.color.color_grey_two)
+                            } else {
+                                playertwo.setBackgroundResource(R.color.color_grey_two)
+                            }
+                        }
+                    }
+                }
             }
         }
     }
@@ -58,10 +79,18 @@ class GameActivirty: AppCompatActivity() {
         GameManager.run {
             getGame()?.let { game ->
                 case.type = game.mCurrent!!.type
-                game.savePosition(position, case.type!!)
-                adapter.notifyItemChanged(position)
-                game.whoPlays()
+                if(game.savePosition(position, case.type!!)) {
+                    adapter.notifyItemChanged(position)
+                    nextPlayer(game)
+                } else {
+                    Toast.makeText(this@GameActivirty,getString(R.string.game_case_filled),Toast.LENGTH_SHORT).show()
+                }
             }
         }
+    }
+
+    private fun nextPlayer(game: Game) {
+        game.whoPlays()
+        setCurrentPlayerNameColor()
     }
 }

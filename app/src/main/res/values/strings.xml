@@ -5,5 +5,5 @@
     <string name="players_player_two_hint">player two (optional)</string>
     <string name="players_button_lets_go">Let\'s Go !</string>
 
-
+    <string name="game_case_filled">You cannot use this case ! </string>
 </resources>
