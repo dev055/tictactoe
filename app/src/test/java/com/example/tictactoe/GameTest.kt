@@ -285,4 +285,30 @@ class GameTest {
         }
         Assert.assertEquals(true,playerOneWins)
     }
+
+    @Test
+    fun testWhoWinsWithPlayerOneCheckJustFirstDiagonally() {
+        var  playerOneWins = false
+        game.mPlayerOne = Player("player one",Type.TYPE_X)
+        if(game.atLeast5FilledCases()) {
+            var playerOneIndices = game.getIndices(game.mPlayerOne!!.type)
+            var possibilities = game.getIndicesForDiagonally(0,4,3)
+            var split = possibilities.split("-")
+            playerOneWins = playerOneIndices.containsPossibilities(split[0])
+        }
+        Assert.assertEquals(false,playerOneWins)
+    }
+
+    @Test
+    fun testWhoWinsWithPlayerOneCheckJustSecondDiagonally() {
+        var  playerOneWins = false
+        game.mPlayerOne = Player("player one",Type.TYPE_X)
+        if(game.atLeast5FilledCases()) {
+            var playerOneIndices = game.getIndices(game.mPlayerOne!!.type)
+            var possibilities = game.getIndicesForDiagonally(2,2,3)
+            var split = possibilities.split("-")
+            playerOneWins = playerOneIndices.containsPossibilities(split[0])
+        }
+        Assert.assertEquals(true,playerOneWins)
+    }
 }
