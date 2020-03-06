@@ -136,6 +136,7 @@ class GameTest {
     @Test
     fun testIfPlayerOneWins() {
         game.mPlayerOne = Player("player one",Type.TYPE_X)
+        game.mPlayerTwo = Player("player two",Type.TYPE_O)
         Assert.assertEquals(true,game.whoWins()!!.name == "player one")
     }
 
@@ -310,5 +311,26 @@ class GameTest {
             playerOneWins = playerOneIndices.containsPossibilities(split[0])
         }
         Assert.assertEquals(true,playerOneWins)
+    }
+
+    @Test
+    fun testCreatefunctionToApplyAllRulesForPlayerTwo() {
+        game.mPlayerTwo = Player("player two",Type.TYPE_O)
+        var wins = false
+        var playerTwoIndices = game.getIndices(game.mPlayerTwo!!.type)
+        val possibilityRows = game.getIndicesForElement(3,1,3)
+        val possibilityColumns = game.getIndicesForElement(1,3,3)
+        val possibilityFirstDiag = game.getIndicesForDiagonally(0,4,3)
+        val possibilitySecondDiag = game.getIndicesForDiagonally(2,2,3)
+        println("$playerTwoIndices")
+        println("$possibilityRows")
+        println("$possibilityColumns")
+        println("$possibilityFirstDiag")
+        println("$possibilitySecondDiag")
+        wins = game.verifyElement(playerTwoIndices,possibilityRows)
+        if(!wins) wins = game.verifyElement(playerTwoIndices,possibilityColumns)
+        if(!wins) wins = game.verifyDiagonally(playerTwoIndices,possibilityFirstDiag)
+        if(!wins) wins = game.verifyDiagonally(playerTwoIndices,possibilitySecondDiag)
+        Assert.assertEquals(true,wins)
     }
 }
