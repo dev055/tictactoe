@@ -1,6 +1,7 @@
 package com.example.tictactoe.models
 
 import java.lang.StringBuilder
+import com.example.tictactoe.utils.StringUtil.containsPossibilities
 
 class Game() {
     var mBoard: HashMap<Int,Int>
@@ -107,12 +108,28 @@ class Game() {
         }
     }
 
-    fun areyouwin(type: Int): Boolean {
+    /*fun areyouwin(type: Int): Boolean {
         val indices = getIndices(type)
         val rowsIndices = getIndicesForElement(3,1,3)
         val splited = rowsIndices.split("-")
         var condition = indices.contains(splited[0]).or(indices.contains(splited[1])).or(indices.contains(splited[2]))
         return condition
         return false
+    }
+    */
+
+    fun whoWins(): Player? {
+        if(atLeast5FilledCases()) {
+            var playerOneWins = false
+            val playerOneIndices = getIndices(mPlayerOne!!.type)
+            val rowsPossibilities = getIndicesForElement(3,1,3)
+            var split = rowsPossibilities.split(" ")
+            playerOneWins = (playerOneIndices.containsPossibilities(split[0])
+                    || playerOneIndices.containsPossibilities(split[1])
+                    || playerOneIndices.containsPossibilities(split[2]) )
+
+            if(playerOneWins) return mPlayerOne
+        }
+        return null
     }
 }
