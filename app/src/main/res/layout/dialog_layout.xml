@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="@dimen/dimen_3dp"
+    android:paddingBottom="@dimen/dimen_3dp"
+    android:orientation="horizontal">
+    <TextView
+        android:id="@+id/dialog_layout_replay_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/game_replay"
+        style="@style/dialogTextStyle" />
+    <TextView
+        android:id="@+id/dialog_layout_new_game_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/game_new_game"
+        style="@style/dialogTextStyle" />
+</LinearLayout>
