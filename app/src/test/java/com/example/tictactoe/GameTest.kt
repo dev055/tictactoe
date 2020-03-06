@@ -135,7 +135,8 @@ class GameTest {
 
     @Test
     fun testIfPlayerOneWins() {
-        Assert.assertEquals(true,game.areyouwin(Type.TYPE_X))
+        game.mPlayerOne = Player("player one",Type.TYPE_X)
+        Assert.assertEquals(true,game.whoWins()!!.name == "player one")
     }
 
     @Test
@@ -262,6 +263,21 @@ class GameTest {
         if(game.atLeast5FilledCases()) {
             var playerOneIndices = game.getIndices(game.mPlayerOne!!.type)
             var possibilities = game.getIndicesForElement(3,1,3)
+            var split = possibilities.split("-")
+            playerOneWins = (playerOneIndices.containsPossibilities(split[0])
+                    || playerOneIndices.containsPossibilities(split[1])
+                    || playerOneIndices.containsPossibilities(split[2]) )
+        }
+        Assert.assertEquals(true,playerOneWins)
+    }
+
+    @Test
+    fun testWhoWinsWithPlayerOneCheckJustColumns() {
+        var  playerOneWins = false
+        game.mPlayerOne = Player("player one",Type.TYPE_X)
+        if(game.atLeast5FilledCases()) {
+            var playerOneIndices = game.getIndices(game.mPlayerOne!!.type)
+            var possibilities = game.getIndicesForElement(1,3,3)
             var split = possibilities.split("-")
             playerOneWins = (playerOneIndices.containsPossibilities(split[0])
                     || playerOneIndices.containsPossibilities(split[1])
