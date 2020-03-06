@@ -118,6 +118,29 @@ class Game() {
     }
     */
 
+    fun verifyElement(indices: String, possibilities: String, reg: String = " "): Boolean{
+        val split = possibilities.split(reg)
+        return (indices.containsPossibilities(split[0])
+                || indices.containsPossibilities(split[1])
+                || indices.containsPossibilities(split[2]) )
+    }
+
+    fun verifyDiagonally(indices: String, possibilities: String, reg: String = " "): Boolean{
+        val split = possibilities.split(reg)
+        return indices.containsPossibilities(split[0])
+    }
+
+    fun applyRules(indices: String, rows: String, columns: String, firstDiagonally: String, secondDiagonally: String): Boolean {
+        var wins = verifyElement(indices,rows)
+        if(!wins)
+            wins = verifyElement(indices,columns)
+        if(!wins)
+            wins = verifyDiagonally(indices,firstDiagonally)
+        if(!wins)
+            wins = verifyDiagonally(indices,secondDiagonally)
+        return wins
+    }
+
     fun whoWins(): Player? {
         if(atLeast5FilledCases()) {
             var playerOneWins = false
@@ -126,44 +149,12 @@ class Game() {
             val playerTwoIndices = getIndices(mPlayerTwo!!.type)
 
             var rowsPossibilities = getIndicesForElement(3,1,3)
-            var split = rowsPossibilities.split(" ")
             var columnsPossibilities = getIndicesForElement(1,3,3)
-            split = columnsPossibilities.split(" ")
             var firstDiagonally = getIndicesForDiagonally(0,4,3)
-            split = firstDiagonally.split(" ")
             var secondDiagonally = getIndicesForDiagonally(2,2,3)
-            split = secondDiagonally.split(" ")
 
-            playerOneWins = (playerOneIndices.containsPossibilities(split[0])
-                    || playerOneIndices.containsPossibilities(split[1])
-                    || playerOneIndices.containsPossibilities(split[2]) )
-            if(!playerOneWins) {
-                playerOneWins = (playerOneIndices.containsPossibilities(split[0])
-                        || playerOneIndices.containsPossibilities(split[1])
-                        || playerOneIndices.containsPossibilities(split[2]) )
-            }
-            if(!playerOneWins) {
-                playerOneWins = playerOneIndices.containsPossibilities(split[0])
-            }
-            if(!playerOneWins) {
-                playerOneWins = playerOneIndices.containsPossibilities(split[0])
-            }
-
-            playerTwoWins = (playerTwoIndices.containsPossibilities(split[0])
-                    || playerOneIndices.containsPossibilities(split[1])
-                    || playerOneIndices.containsPossibilities(split[2]) )
-            if(!playerTwoWins) {
-                playerTwoWins = (playerTwoIndices.containsPossibilities(split[0])
-                        || playerOneIndices.containsPossibilities(split[1])
-                        || playerOneIndices.containsPossibilities(split[2]) )
-            }
-            if(!playerTwoWins) {
-                playerTwoWins = playerTwoIndices.containsPossibilities(split[0])
-            }
-
-            if(!playerTwoWins) {
-                playerTwoWins = playerTwoIndices.containsPossibilities(split[0])
-            }
+            playerOneWins = applyRules(playerOneIndices,rowsPossibilities,columnsPossibilities,firstDiagonally,secondDiagonally)
+            playerTwoWins = applyRules(playerTwoIndices,rowsPossibilities,columnsPossibilities,firstDiagonally,secondDiagonally)
 
             if(playerOneWins) return mPlayerOne
             if(playerTwoWins) return mPlayerTwo
