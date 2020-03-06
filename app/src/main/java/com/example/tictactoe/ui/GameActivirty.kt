@@ -82,6 +82,9 @@ class GameActivirty: AppCompatActivity() {
                 if(game.savePosition(position, case.type!!)) {
                     adapter.notifyItemChanged(position)
                     nextPlayer(game)
+                    if(game.atLeast5FilledCases()) {
+
+                    }
                 } else {
                     Toast.makeText(this@GameActivirty,getString(R.string.game_case_filled),Toast.LENGTH_SHORT).show()
                 }
@@ -90,6 +93,7 @@ class GameActivirty: AppCompatActivity() {
     }
 
     private fun nextPlayer(game: Game) {
+        //TODO check property finish
         game.whoPlays()
         setCurrentPlayerNameColor()
     }
