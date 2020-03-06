@@ -121,14 +121,52 @@ class Game() {
     fun whoWins(): Player? {
         if(atLeast5FilledCases()) {
             var playerOneWins = false
+            var playerTwoWins = false
             val playerOneIndices = getIndices(mPlayerOne!!.type)
-            val rowsPossibilities = getIndicesForElement(3,1,3)
+            val playerTwoIndices = getIndices(mPlayerTwo!!.type)
+
+            var rowsPossibilities = getIndicesForElement(3,1,3)
             var split = rowsPossibilities.split(" ")
+            var columnsPossibilities = getIndicesForElement(1,3,3)
+            split = columnsPossibilities.split(" ")
+            var firstDiagonally = getIndicesForDiagonally(0,4,3)
+            split = firstDiagonally.split(" ")
+            var secondDiagonally = getIndicesForDiagonally(2,2,3)
+            split = secondDiagonally.split(" ")
+
             playerOneWins = (playerOneIndices.containsPossibilities(split[0])
                     || playerOneIndices.containsPossibilities(split[1])
                     || playerOneIndices.containsPossibilities(split[2]) )
+            if(!playerOneWins) {
+                playerOneWins = (playerOneIndices.containsPossibilities(split[0])
+                        || playerOneIndices.containsPossibilities(split[1])
+                        || playerOneIndices.containsPossibilities(split[2]) )
+            }
+            if(!playerOneWins) {
+                playerOneWins = playerOneIndices.containsPossibilities(split[0])
+            }
+            if(!playerOneWins) {
+                playerOneWins = playerOneIndices.containsPossibilities(split[0])
+            }
+
+            playerTwoWins = (playerTwoIndices.containsPossibilities(split[0])
+                    || playerOneIndices.containsPossibilities(split[1])
+                    || playerOneIndices.containsPossibilities(split[2]) )
+            if(!playerTwoWins) {
+                playerTwoWins = (playerTwoIndices.containsPossibilities(split[0])
+                        || playerOneIndices.containsPossibilities(split[1])
+                        || playerOneIndices.containsPossibilities(split[2]) )
+            }
+            if(!playerTwoWins) {
+                playerTwoWins = playerTwoIndices.containsPossibilities(split[0])
+            }
+
+            if(!playerTwoWins) {
+                playerTwoWins = playerTwoIndices.containsPossibilities(split[0])
+            }
 
             if(playerOneWins) return mPlayerOne
+            if(playerTwoWins) return mPlayerTwo
         }
         return null
     }
