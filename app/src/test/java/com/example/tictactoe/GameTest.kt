@@ -7,6 +7,7 @@ import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 import java.lang.StringBuilder
+import com.example.tictactoe.utils.StringUtil.containsPossibilities
 
 class GameTest {
     private lateinit var game: Game
@@ -257,9 +258,14 @@ class GameTest {
     @Test
     fun testWhoWinsWithPlayerOneCheckJustRows() {
         var  playerOneWins = false
+        game.mPlayerOne = Player("player one",Type.TYPE_X)
         if(game.atLeast5FilledCases()) {
             var playerOneIndices = game.getIndices(game.mPlayerOne!!.type)
-            playerOneWins = playerOneIndices.contains(game.getIndicesForElement(3,1,3))
+            var possibilities = game.getIndicesForElement(3,1,3)
+            var split = possibilities.split("-")
+            playerOneWins = (playerOneIndices.containsPossibilities(split[0])
+                    || playerOneIndices.containsPossibilities(split[1])
+                    || playerOneIndices.containsPossibilities(split[2]) )
         }
         Assert.assertEquals(true,playerOneWins)
     }
