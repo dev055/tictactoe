@@ -2,6 +2,7 @@ package com.example.tictactoe.models
 
 import java.lang.StringBuilder
 import com.example.tictactoe.utils.StringUtil.containsPossibilities
+import java.lang.IllegalArgumentException
 
 class Game() {
     var mBoard: HashMap<Int,Int>
@@ -17,6 +18,7 @@ class Game() {
     }
 
     constructor(numberRows: Int, numberColumns: Int): this() {
+        if(numberRows != 3 || numberColumns != 3) throw IllegalArgumentException("rows and columns must equal to 3 !")
         this.mNumberRows = numberRows
         this.mNumberColumns = numberColumns
         this.mTotal = this.mNumberRows!!.times(this.mNumberColumns!!)
