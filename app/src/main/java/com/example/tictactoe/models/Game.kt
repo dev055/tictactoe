@@ -5,17 +5,13 @@ import com.example.tictactoe.utils.StringUtil.containsPossibilities
 import java.lang.IllegalArgumentException
 
 class Game() {
-    var mBoard: HashMap<Int,Int>
+    var mBoard: HashMap<Int,Int> = HashMap()
     var mNumberRows: Int? = null
     var mNumberColumns: Int? = null
     var mTotal: Int? = null
     var mPlayerOne: Player? = null
     var mPlayerTwo: Player? = null
     var mCurrent: Player? = null
-
-    init {
-        mBoard = HashMap()
-    }
 
     constructor(numberRows: Int, numberColumns: Int, playerOne: Player, playerTwo: Player): this() {
         if(numberRows != 3 || numberColumns != 3) throw IllegalArgumentException("rows and columns must equal to 3 !")
@@ -24,7 +20,6 @@ class Game() {
         this.mNumberRows = numberRows
         this.mNumberColumns = numberColumns
         this.mTotal = this.mNumberRows!!.times(this.mNumberColumns!!)
-        this.mBoard = HashMap()
     }
 
     fun isBoardFilled(): Boolean {
