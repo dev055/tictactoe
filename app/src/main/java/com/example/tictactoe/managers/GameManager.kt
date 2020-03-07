@@ -20,15 +20,15 @@ object GameManager {
     fun addDialogListener(listener: IDialogListener) { mDialogListeners.add(listener) }
 
     fun createPlayer(playerOneName: String, playerTwoName: String) {
+        val playerOne = Player(playerOneName,Type.TYPE_X)
+        val playerTwo = Player(playerTwoName,Type.TYPE_O)
         try {
-            mGame = Game(number, number)
+            mGame = Game(number, number,playerOne,playerTwo)
         }catch (i: IllegalArgumentException) {
             i.printStackTrace()
             Log.e("Error","${i.message}")
-            mGame = Game(3, 3)
+            mGame = Game(3, 3,playerOne, playerTwo)
         }
-        mGame!!.mPlayerOne = Player(playerOneName,Type.TYPE_X)
-        mGame!!.mPlayerTwo = Player(playerTwoName,Type.TYPE_O)
         mListeners.forEach { listener -> listener.goNextView() }
     }
 
