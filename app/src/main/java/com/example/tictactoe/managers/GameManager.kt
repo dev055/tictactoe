@@ -1,13 +1,15 @@
 package com.example.tictactoe.managers
 
+import android.util.Log
 import com.example.tictactoe.listeners.IDialogListener
 import com.example.tictactoe.listeners.IViewListener
 import com.example.tictactoe.models.Game
 import com.example.tictactoe.models.Player
 import com.example.tictactoe.models.Type
+import java.lang.IllegalArgumentException
 
 object GameManager {
-    private var number = 3
+    private var number = 4
     private var mGame: Game? = null
     private var mListeners = ArrayList<IViewListener>()
     private var mDialogListeners = ArrayList<IDialogListener>()
@@ -18,7 +20,13 @@ object GameManager {
     fun addDialogListener(listener: IDialogListener) { mDialogListeners.add(listener) }
 
     fun createPlayer(playerOneName: String, playerTwoName: String) {
-        mGame = Game(number, number)
+        try {
+            mGame = Game(number, number)
+        }catch (i: IllegalArgumentException) {
+            i.printStackTrace()
+            Log.e("Error","${i.message}")
+            mGame = Game(3, 3)
+        }
         mGame!!.mPlayerOne = Player(playerOneName,Type.TYPE_X)
         mGame!!.mPlayerTwo = Player(playerTwoName,Type.TYPE_O)
         mListeners.forEach { listener -> listener.goNextView() }
