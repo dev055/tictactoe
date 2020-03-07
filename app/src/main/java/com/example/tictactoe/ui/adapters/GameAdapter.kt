@@ -38,27 +38,22 @@ class GameAdapter(private val context: Context): RecyclerView.Adapter<RecyclerVi
         if(case.type != null) {
             setType(holder.caseView,case.type!!)
         } else {
-            holder.caseView.text = ""
-            holder.caseView.setTextColor(ContextCompat.getColor(context,R.color.color_black))
+            setColor(holder.caseView,R.color.color_black)
         }
         holder.mainView.setOnClickListener { fn!!.invoke(case,position) }
     }
 
     private fun setType(view: TextView, type: Int) {
         when(type) {
-            Type.TYPE_X -> {
-                view.text = " X "
-                view.setTextColor(ContextCompat.getColor(context,R.color.color_red_one))
-            }
-            Type.TYPE_O -> {
-                view.text = " O "
-                view.setTextColor(ContextCompat.getColor(context,R.color.color_black))
-            }
-            else -> {
-                view.text = ""
-                view.setTextColor(ContextCompat.getColor(context,R.color.color_black))
-            }
+            Type.TYPE_X -> { setColor(view,R.color.color_red_one," X ") }
+            Type.TYPE_O -> { setColor(view,R.color.color_black," O ") }
+            else -> { setColor(view,R.color.color_black) }
         }
+    }
+
+    private fun setColor(view: TextView,colorId: Int, text: String = "") {
+        view.text = text
+        view.setTextColor(ContextCompat.getColor(context,colorId))
     }
 
     class GameViewHolder(view: View): RecyclerView.ViewHolder(view) {
