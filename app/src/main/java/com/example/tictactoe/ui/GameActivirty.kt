@@ -23,7 +23,7 @@ class GameActivirty: AppCompatActivity(),IDialogListener {
         val customLayout = LayoutInflater.from(this).inflate(R.layout.dialog_layout,null,false)
         val alertDialog = AlertDialog.Builder(this)
             .setTitle(getString(R.string.dialog_title))
-            .setCancelable(true)
+            .setCancelable(false)
             .setView(customLayout)
             .create()
         customLayout.apply {
