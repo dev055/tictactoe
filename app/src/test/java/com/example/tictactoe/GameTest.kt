@@ -214,6 +214,7 @@ class GameTest {
     @Test
     fun testWhoPlaysIfPreviousIsPlayerOne() {
         val player =  Player("player one",Type.TYPE_X)
+        game.mCurrent = game.mPlayerOne
         if(game.mCurrent!!.name == player.name)
             game.mCurrent =  Player("player two",Type.TYPE_O)
         else
