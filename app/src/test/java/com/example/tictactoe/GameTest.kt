@@ -8,6 +8,7 @@ import org.junit.Before
 import org.junit.Test
 import java.lang.StringBuilder
 import com.example.tictactoe.utils.StringUtil.containsPossibilities
+import java.lang.IllegalArgumentException
 
 class GameTest {
     private lateinit var game: Game
@@ -373,16 +374,28 @@ class GameTest {
     }
 
     @Test
-    fun testRowsAndColumnsMustEgalTothree() {
+    fun testRowsAndColumnsMustEqualTothree() {
         val game = Game(3,3)
         val conditions = (game.mNumberRows == 3 && game.mNumberColumns == 3)
         Assert.assertEquals(true,conditions)
     }
 
-    @Test
-    fun testRowsAndColumnsNotEgalTothree() {
+    @Test(expected = IllegalArgumentException::class)
+    fun testRowsAndColumnsNotEqualTothree() {
         val game = Game(4,4)
         val conditions = (game.mNumberRows == 3 && game.mNumberColumns == 3)
         Assert.assertEquals(false,conditions)
+    }
+
+    @Test(expected = IllegalArgumentException::class)
+    fun testThrowsIllegalExceptionIfRowsIsEqualToTwo() {
+        val game = Game(2,3)
+        Assert.fail("Throws exception if different to 3 !")
+    }
+
+    @Test(expected = IllegalArgumentException::class)
+    fun testThrowsIllegalExceptionIfColumnsIsEqualToTwo() {
+        val game = Game(3,2)
+        Assert.fail("Throws exception if different to 3 !")
     }
 }
