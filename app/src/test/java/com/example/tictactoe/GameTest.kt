@@ -18,11 +18,12 @@ class GameTest {
     private var indicesForSecondDiagonally = "2 4 6"
     private var playerOneIndices = "0 2 3 4 5 6"
     private var playerTwoIndices = "1 7 8"
+    private val playerOne = Player("player one",Type.TYPE_X)
+    private val playerTwo = Player("player one",Type.TYPE_O)
 
     @Before
     fun instantiateGame() {
-        game = Game(3,3)
-
+        game = Game(3,3,playerOne,playerTwo)
         game.mBoard[0] = Type.TYPE_X
         game.mBoard[1] = Type.TYPE_O
         game.mBoard[2] = Type.TYPE_X
@@ -32,8 +33,6 @@ class GameTest {
         game.mBoard[6] = Type.TYPE_X
         game.mBoard[7] = Type.TYPE_O
         game.mBoard[8] = Type.TYPE_O
-
-        game.mCurrent = Player("player one",Type.TYPE_X)
     }
 
     @Test
@@ -63,20 +62,16 @@ class GameTest {
 
     @Test
     fun testIfGameContainsAPlayerOne() {
-        game.mPlayerOne = Player("player one",Type.TYPE_X)
         Assert.assertEquals(true,game.mPlayerOne != null)
     }
 
     @Test
     fun testIfGameContainsAPlayerTwo() {
-        game.mPlayerTwo = Player("player two",Type.TYPE_X)
         Assert.assertEquals(true,game.mPlayerTwo != null)
     }
 
     @Test
     fun testIfGameContainsPlayers() {
-        game.mPlayerOne = Player("player one",Type.TYPE_X)
-        game.mPlayerTwo = Player("player two",Type.TYPE_X)
         val condition = (game.mPlayerOne != null && game.mPlayerTwo != null)
         Assert.assertEquals(true,condition)
     }
@@ -136,8 +131,6 @@ class GameTest {
 
     @Test
     fun testIfPlayerOneWins() {
-        game.mPlayerOne = Player("player one",Type.TYPE_X)
-        game.mPlayerTwo = Player("player two",Type.TYPE_O)
         Assert.assertEquals(true,game.whoWins() != null)
     }
 
@@ -261,7 +254,6 @@ class GameTest {
     @Test
     fun testWhoWinsWithPlayerOneCheckJustRows() {
         var  playerOneWins = false
-        game.mPlayerOne = Player("player one",Type.TYPE_X)
         if(game.atLeast5FilledCases()) {
             var playerOneIndices = game.getIndices(game.mPlayerOne!!.type)
             var possibilities = game.getIndicesForElement(3,1,3)
@@ -276,7 +268,6 @@ class GameTest {
     @Test
     fun testWhoWinsWithPlayerOneCheckJustColumns() {
         var  playerOneWins = false
-        game.mPlayerOne = Player("player one",Type.TYPE_X)
         if(game.atLeast5FilledCases()) {
             var playerOneIndices = game.getIndices(game.mPlayerOne!!.type)
             var possibilities = game.getIndicesForElement(1,3,3)
@@ -291,7 +282,6 @@ class GameTest {
     @Test
     fun testWhoWinsWithPlayerOneCheckJustFirstDiagonally() {
         var  playerOneWins = false
-        game.mPlayerOne = Player("player one",Type.TYPE_X)
         if(game.atLeast5FilledCases()) {
             var playerOneIndices = game.getIndices(game.mPlayerOne!!.type)
             var possibilities = game.getIndicesForDiagonally(0,4,3)
@@ -304,7 +294,6 @@ class GameTest {
     @Test
     fun testWhoWinsWithPlayerOneCheckJustSecondDiagonally() {
         var  playerOneWins = false
-        game.mPlayerOne = Player("player one",Type.TYPE_X)
         if(game.atLeast5FilledCases()) {
             var playerOneIndices = game.getIndices(game.mPlayerOne!!.type)
             var possibilities = game.getIndicesForDiagonally(2,2,3)
@@ -316,7 +305,6 @@ class GameTest {
 
     @Test
     fun testCreatefunctionToApplyAllRulesForPlayerTwo() {
-        game.mPlayerTwo = Player("player two",Type.TYPE_O)
         var wins = false
         var playerTwoIndices = game.getIndices(game.mPlayerTwo!!.type)
         val possibilityRows = game.getIndicesForElement(3,1,3)
@@ -375,27 +363,27 @@ class GameTest {
 
     @Test
     fun testRowsAndColumnsMustEqualTothree() {
-        val game = Game(3,3)
+        val game = Game(3,3, playerOne,playerTwo)
         val conditions = (game.mNumberRows == 3 && game.mNumberColumns == 3)
         Assert.assertEquals(true,conditions)
     }
 
     @Test(expected = IllegalArgumentException::class)
     fun testRowsAndColumnsNotEqualTothree() {
-        val game = Game(4,4)
+        val game = Game(4,4,playerOne,playerTwo)
         val conditions = (game.mNumberRows == 3 && game.mNumberColumns == 3)
         Assert.assertEquals(false,conditions)
     }
 
     @Test(expected = IllegalArgumentException::class)
     fun testThrowsIllegalExceptionIfRowsIsEqualToTwo() {
-        val game = Game(2,3)
+        val game = Game(2,3,playerOne,playerTwo)
         Assert.fail("Throws exception if different to 3 !")
     }
 
     @Test(expected = IllegalArgumentException::class)
     fun testThrowsIllegalExceptionIfColumnsIsEqualToTwo() {
-        val game = Game(3,2)
+        val game = Game(3,2,playerOne,playerTwo)
         Assert.fail("Throws exception if different to 3 !")
     }
 }

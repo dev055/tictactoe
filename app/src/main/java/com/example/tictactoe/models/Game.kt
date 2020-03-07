@@ -17,8 +17,10 @@ class Game() {
         mBoard = HashMap()
     }
 
-    constructor(numberRows: Int, numberColumns: Int): this() {
+    constructor(numberRows: Int, numberColumns: Int, playerOne: Player, playerTwo: Player): this() {
         if(numberRows != 3 || numberColumns != 3) throw IllegalArgumentException("rows and columns must equal to 3 !")
+        mPlayerTwo = playerTwo
+        mPlayerOne = playerOne
         this.mNumberRows = numberRows
         this.mNumberColumns = numberColumns
         this.mTotal = this.mNumberRows!!.times(this.mNumberColumns!!)
