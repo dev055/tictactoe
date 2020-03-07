@@ -371,4 +371,18 @@ class GameTest {
                 && game.mTotal == null)
         Assert.assertEquals(true,conditions)
     }
+
+    @Test
+    fun testRowsAndColumnsMustEgalTothree() {
+        val game = Game(3,3)
+        val conditions = (game.mNumberRows == 3 && game.mNumberColumns == 3)
+        Assert.assertEquals(true,conditions)
+    }
+
+    @Test
+    fun testRowsAndColumnsNotEgalTothree() {
+        val game = Game(4,4)
+        val conditions = (game.mNumberRows == 3 && game.mNumberColumns == 3)
+        Assert.assertEquals(false,conditions)
+    }
 }
