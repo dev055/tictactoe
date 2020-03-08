@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">TicTacToe</string>
+
+    <string name="players_player_one_hint">player one (optional)</string>
+    <string name="players_player_two_hint">player two (optional)</string>
+    <string name="players_button_lets_go">Let\'s Go !</string>
+
+    <string name="game_case_filled">You cannot use this case ! </string>
+    <string name="game_won"> %s won !</string>
+    <string name="game_is_draw">The game is draw ! </string>
+    <string name="game_replay">Replay</string>
+    <string name="game_new_game">New game</string>
+
+    <string name="dialog_title">End of Game !</string>
 </resources>
