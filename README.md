@@ -34,6 +34,6 @@
     - Enable developer mode on device
             Open settings app -> about telephon -> information about software ->
 	    tap on build number till you see “you are now a developer”
-            Then go back to settings app -> developer options -> enable debugging (USB Debugging)
+            -> go back to settings app -> developer options -> enable debugging (USB Debugging)
     - After this steps, You need to plug the device to android studio via an usb cable
             to run the app on device in clicking on the green play button from ide
